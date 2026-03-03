@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html lang="es">
+    <head>
+    <meta charset="utf-8" />
+    <title>Cafetería del Equipo</title>
+
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+    </head>
+
+  <body>
+
+    <section id="global">
+
+      <!-- Cabecera -->
+      <header>
+        <!-- Fecha y hora -->
+        <div class="f"></div>
+        <script>
+          var f = new Date();
+          document.write('<div class="f">');
+          document.write(f);
+          document.write('</div>');
+        </script>
+
+        <div id="logo">
+          <h1>Cafetería del Equipo</h1>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <nav id="menu">
+            <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="about.html">Nosotros</a></li>
+            <li><a href="contact.html">Contacto</a></li>
+            </ul>
+        </nav>
+
+
+      </header>
+
+      <!-- Slider -->
+      <div id="slider">
+        <div class="galeria">
+          <div><img src="img/1.jpg" title="Cafetería acogedora"></div>
+          <div><img src="img/2.jpg" title="Café con postre"></div>
+          <div><img src="img/3.jpg" title="Barista preparando café"></div>
+          <div><img src="img/4.jpg" title="Momentos de café"></div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Ubicación y horarios -->
+    <section class="ubicacion">
+      <h3 class="titulo">Ubicación y horarios</h3>
+
+      <div class="direccion">
+        <h4>Dirección</h4>
+        <p class="calle">76269 Zibatá, Querétaro<br>Cto. Universidades I, Fracción 2, 76246 Zibatá, Qro.</p>
+        <p class="telefono">(442) 000-0000</p>
+        <p class="correo">cafeteria@equipo.com</p>
+      </div>
+
+      <div class="horarios">
+        <h4>Horarios</h4>
+        <p class="entre-semana">Lunes a Viernes<br>8:00am - 7:00pm</p>
+        <p class="fin-semana">Sábados y Domingos<br>9:00am - 9:00pm</p>
+      </div>
+    </section>
+
+    <!-- Mapa -->
+    <section class="mapa">
+      <br>
+      <!-- Sustituye AQUÍ_PEGAS_EL_IFRAME_DE_GOOGLE_MAPS por el código del tutorial -->
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59725.197771099!2d-100.34696236479701!3d20.676703161161356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d35db08e9cd7d1%3A0x4041218c71a698ce!2sStarbucks%20Anahuac%20Quer%C3%A9taro!5e0!3m2!1sen!2smx!4v1772551452186!5m2!1sen!2smx" 
+      width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </section>
+
+    <footer>
+      Copyright 2026
+      <a href="#" class="subir">Ir arriba</a>
+    </footer>
+
+  </body>
+</html>

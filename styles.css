@@ -1,0 +1,133 @@
+*{
+  margin: 0px;
+  padding: 0px;
+}
+
+.clearfix{
+  float: none;
+  clear: both;
+}
+
+body{
+  background: url("img/bg.jpg") no-repeat center center fixed;
+  background-size: cover;
+  font-family: Verdana, Arial, sans-serif;
+}
+
+
+.f{
+  font-size: 14px;
+  letter-spacing: 2px;
+  line-height: 25px;
+  color: #04B4AE;
+  text-align: right;
+}
+
+#global{
+  width: 65%;
+  margin: 30px auto 0 auto;
+  padding: 25px;
+  background: #3B170B;
+  box-shadow: 0px 0px 2px gray;
+}
+
+#logo{
+  font-size: 20px;
+  letter-spacing: 2px;
+  line-height: 75px;
+  background: #FBF5EF;
+  color: black;
+  text-align: center;
+  width: 100%;
+  height: 80px;
+  margin-bottom: 20px;
+  float: left;
+  text-transform: uppercase;
+}
+
+#menu{
+  background: #04B4AE;
+  width: 100%;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+#menu ul{
+  line-height: 46px;
+  list-style: none;
+  text-align: center;
+}
+
+#menu ul li{
+  height: 46px;
+  display: inline-block;
+  transition: all 300ms;
+}
+
+#menu ul li:hover{
+  background: #FBF5EF;
+}
+
+#menu ul li a{
+  display: block;
+  padding: 0px 20px;
+  color: white;
+  text-decoration: none;
+}
+
+/* Slider */
+#slider{
+  width: 100%;
+  margin: 20px auto;
+}
+
+.galeria img{
+  width: 100%;
+}
+
+/* Ubicación y mapa centrados */
+.ubicacion,
+.mapa{
+  width: 65%;
+  margin: 0 auto 20px auto;
+  background: rgba(255,255,255,0.9);
+  padding: 15px;
+}
+
+.ubicacion .direccion,
+.ubicacion .horarios{
+  display: inline-block;
+  width: 45%;
+  vertical-align: top;
+  text-align: left;
+}
+
+/* Footer */
+footer{
+  width: 100%;
+  background: #000;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+}
+
+footer .subir{
+  color: #04B4AE;
+  margin-left: 10px;
+  text-decoration: none;
+}
+
+/* Responsive básico */
+@media (max-width: 900px){
+  #global,
+  .ubicacion,
+  .mapa{
+    width: 90%;
+  }
+
+  .ubicacion .direccion,
+  .ubicacion .horarios{
+    width: 100%;
+    margin-bottom: 15px;
+  }
+}

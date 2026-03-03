@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Contacto - Cafetería del Equipo</title>
+
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+  </head>
+  <body>
+    <section id="global">
+
+      <header>
+        <div class="f"></div>
+        <script>
+          var f = new Date();
+          document.write('<div class="f">');
+          document.write(f);
+          document.write('</div>');
+        </script>
+
+        <div id="logo">
+          <h1>Cafetería del Equipo</h1>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <nav id="menu">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="about.html">Nosotros</a></li>
+            <li><a href="contact.html">Contacto</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <section class="ubicacion">
+        <h3 class="titulo">Contacto</h3>
+
+        <form id="form-contacto">
+          <p>
+            <label>Nombre:<br>
+              <input type="text" id="nombre">
+            </label>
+          </p>
+          <p>
+            <label>Correo:<br>
+              <input type="text" id="correo">
+            </label>
+          </p>
+          <p>
+            <label>Mensaje:<br>
+              <textarea id="mensaje"></textarea>
+            </label>
+          </p>
+          <p>
+            <input type="submit" value="Enviar">
+          </p>
+        </form>
+
+        <p id="error" style="color:red;"></p>
+        <p id="ok" style="color:green;"></p>
+      </section>
+
+    </section>
+
+    <footer>
+      Copyright 2026
+      <a href="#" class="subir">Ir arriba</a>
+    </footer>
+
+    <!-- VALIDACIÓN DEL FORMULARIO -->
+    <script>
+      var form = document.getElementById('form-contacto');
+      var error = document.getElementById('error');
+      var ok = document.getElementById('ok');
+
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        error.textContent = '';
+        ok.textContent = '';
+
+        var nombre = document.getElementById('nombre').value.trim();
+        var correo = document.getElementById('correo').value.trim();
+        var mensaje = document.getElementById('mensaje').value.trim();
+
+        if(!nombre || !correo || !mensaje){
+          error.textContent = 'Todos los campos son obligatorios.';
+          return;
+        }
+
+        var reCorreo = /\S+@\S+\.\S+/;
+        if(!reCorreo.test(correo)){
+          error.textContent = 'Correo no válido.';
+          return;
+        }
+
+        ok.textContent = 'Formulario enviado correctamente (simulado).';
+        form.reset();
+      });
+    </script>
+  </body>
+</html>
