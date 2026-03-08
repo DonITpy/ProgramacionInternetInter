@@ -1,133 +1,330 @@
-*{
-  margin: 0px;
-  padding: 0px;
+
+:root{
+  --bg: #f5f5f7;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+
+  /* Tema principal (naranja) */
+  --brand: #f97316;      /* naranja */
+  --brand-2: #ea580c;    /* naranja oscuro */
+
+  --ORANGE: #ea580c;
+
+  --shadow: 0 10px 25px rgba(0,0,0,.08);
+  --radius: 14px;
+
+  --slider-h: 520px;
+  --slider-h-mobile: 320px;
 }
 
-.clearfix{
-  float: none;
-  clear: both;
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html{
+  scroll-behavior: smooth;
 }
 
 body{
-  background: url("img/bg.jpg") no-repeat center center fixed;
-  background-size: cover;
-  font-family: Verdana, Arial, sans-serif;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
 }
 
+/* Contenedor principal */
+#global{
+  max-width: 1100px;
+  margin: 24px auto 0 auto;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
 
+/* Header */
+header{
+  padding: 18px 18px 0 18px;
+}
+
+/* Fecha/hora */
 .f{
-  font-size: 14px;
-  letter-spacing: 2px;
-  line-height: 25px;
-  color: #04B4AE;
+  font-size: .9rem;
+  color: var(--muted);
   text-align: right;
 }
+.f:empty{ display: none; } /* oculta el div vacío que viene en el HTML */
 
-#global{
-  width: 65%;
-  margin: 30px auto 0 auto;
-  padding: 25px;
-  background: #3B170B;
-  box-shadow: 0px 0px 2px gray;
-}
-
+/* Logo */
 #logo{
-  font-size: 20px;
-  letter-spacing: 2px;
-  line-height: 75px;
-  background: #FBF5EF;
-  color: black;
+  padding: 8px 0 10px 0;
   text-align: center;
-  width: 100%;
-  height: 80px;
-  margin-bottom: 20px;
-  float: left;
-  text-transform: uppercase;
+}
+#logo h1{
+  font-size: 2rem;
+  letter-spacing: .3px;
+  color: var(--brand);
 }
 
+/* Menú horizontal */
 #menu{
-  background: #04B4AE;
-  width: 100%;
-  text-transform: uppercase;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  border-top: 1px solid rgba(0,0,0,.06);
+  padding: 12px 0 18px 0;
 }
-
 #menu ul{
-  line-height: 46px;
   list-style: none;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }
-
-#menu ul li{
-  height: 46px;
-  display: inline-block;
-  transition: all 300ms;
+#menu li{
+  margin: 0;
 }
-
-#menu ul li:hover{
-  background: #FBF5EF;
-}
-
-#menu ul li a{
+#menu a{
   display: block;
-  padding: 0px 20px;
-  color: white;
+  padding: 10px 16px;
   text-decoration: none;
+  color: #fff;
+  background: var(--brand);
+  border-radius: 10px;
+  transition: background .25s ease, transform .15s ease;
+}
+#menu a:hover{
+  background: var(--brand-2); /* requisito: cambia de color con transición */
+  transform: translateY(-1px);
 }
 
 /* Slider */
 #slider{
+  padding: 0 18px 18px 18px;
+}
+#slider .galeria img{
   width: 100%;
-  margin: 20px auto;
+  height: 100%;
+  display: block;
+  border-radius: 12px;
+  object-fit: cover;
 }
 
-.galeria img{
-  width: 100%;
+/* Altura fija del slider */
+#slider .galeria > div{
+  height: var(--slider-h);
+}
+.bx-wrapper,
+.bx-viewport{
+  height: var(--slider-h) !important;
 }
 
-/* Ubicación y mapa centrados */
-.ubicacion,
-.mapa{
-  width: 65%;
-  margin: 0 auto 20px auto;
-  background: rgba(255,255,255,0.9);
-  padding: 15px;
+/* Ajustes del wrapper que genera bxSlider */
+.bx-wrapper{
+  border: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  margin: 0 auto;
+  max-width: 900px;
+  position: relative;
+}
+.bx-viewport{
+  border-radius: 12px;
+  background: transparent !important;
+  min-height: 280px; /* evita que se colapse si las imágenes tardan */
+}
+.bx-wrapper .bx-caption{
+  background: rgba(0,0,0,.45);
+  border-radius: 0 0 12px 12px;
+}
+
+/* Flechas visibles (sin tapar las fotos) */
+.bx-wrapper .bx-controls-direction a{
+  width: 56px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, .85); /* negro */
+  border: 1px solid rgba(255,255,255,.35);
+  box-shadow: 0 10px 20px rgba(0,0,0,.18);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 50;
+  transition: background .2s ease, transform .12s ease, opacity .2s ease;
+  opacity: .96;
+
+  /* centra el icono perfectamente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* quita texto por defecto de bxSlider sin descentrar */
+  font-size: 0;
+  line-height: 0;
+
+  /* quita imagen/estilos por defecto de bxSlider */
+  background-image: none !important;
+  overflow: hidden;
+}
+
+.bx-wrapper .bx-controls-direction a:hover{
+  background: rgba(249, 115, 22, .95); /* naranja */
+  transform: translateY(-50%) scale(1.03);
+  opacity: 1;
+}
+
+.bx-wrapper .bx-prev{ left: 12px; }
+.bx-wrapper .bx-next{ right: 12px; }
+
+/* Iconos de flecha */
+.bx-wrapper .bx-prev::before,
+.bx-wrapper .bx-next::before{
+  content: "";
+  width: 14px;
+  height: 14px;
+  border-top: 3px solid #fff;
+  border-right: 3px solid #fff;
+  display: block;
+}
+
+/* Flecha izquierda */
+.bx-wrapper .bx-prev::before{
+  transform: rotate(-135deg);
+}
+
+/* Flecha derecha */
+.bx-wrapper .bx-next::before{
+  transform: rotate(45deg);
+}
+
+/* Puntos más limpios */
+.bx-wrapper .bx-pager.bx-default-pager a{
+  background: rgba(17, 24, 39, .35) !important;
+  transition: transform .15s ease, background .2s ease, opacity .2s ease;
+}
+.bx-wrapper .bx-pager.bx-default-pager a:hover{
+  background: rgba(249, 115, 22, .75) !important;
+  transform: scale(1.08);
+}
+.bx-wrapper .bx-pager.bx-default-pager a.active{
+  background: rgba(249, 115, 22, .95) !important;
+  opacity: 1;
+}
+
+/* Ubicación y horarios */
+.ubicacion{
+  max-width: 1100px;
+  margin: 18px auto 0 auto;
+  padding: 18px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "titulo titulo"
+    "horarios direccion";
+  gap: 14px;
+  align-items: stretch;
+}
+
+.ubicacion .titulo{
+  grid-area: titulo;
+  text-align: center;
+  font-size: 1.4rem;
+  margin-bottom: 2px;
+  color: var(--brand);
+}
+
+.ubicacion .horarios{
+  grid-area: horarios;
+}
+.ubicacion .direccion{
+  grid-area: direccion;
+}
+
+/* En la página Nosotros, hay varias tarjetas; evitar superposición por grid-area fija */
+.ubicacion.equipo .horarios,
+.ubicacion.equipo .direccion{
+  grid-area: auto;
 }
 
 .ubicacion .direccion,
 .ubicacion .horarios{
-  display: inline-block;
-  width: 45%;
-  vertical-align: top;
-  text-align: left;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px;
 }
 
-/* Footer */
-footer{
+.ubicacion .direccion,
+.ubicacion .horarios{
+  height: 100%;
+}
+
+.ubicacion h4{
+  margin-bottom: 8px;
+  color: var(--text);
+}
+.ubicacion p{
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+/* Mapa */
+.mapa{
+  max-width: 1100px;
+  margin: 0 auto 18px auto;
+  padding: 0 18px 18px 18px;
+  display: flex;
+  justify-content: center; /* requisito: centrado */
+}
+.mapa iframe{
   width: 100%;
-  background: #000;
+  max-width: 900px;
+  height: 450px;
+  border: 0;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* Footer + botón ir arriba */
+footer{
+  max-width: 1100px;
+  margin: 0 auto 30px auto;
+  background: #111827;
   color: #fff;
-  text-align: center;
-  padding: 10px 0;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
 }
-
 footer .subir{
-  color: #04B4AE;
-  margin-left: 10px;
   text-decoration: none;
+  color: #fff;
+  background: var(--brand);
+  padding: 8px 14px;
+  border-radius: 10px;
+  transition: background .25s ease, transform .15s ease, opacity .25s ease;
+  opacity: .95;
+}
+footer .subir:hover{
+  background: var(--brand-2);
+  transform: translateY(-1px);
+  opacity: 1;
 }
 
-/* Responsive básico */
-@media (max-width: 900px){
-  #global,
-  .ubicacion,
-  .mapa{
-    width: 90%;
-  }
+/* Utilidades */
+.clearfix{ clear: both; }
 
-  .ubicacion .direccion,
-  .ubicacion .horarios{
-    width: 100%;
-    margin-bottom: 15px;
-  }
+/* Responsive */
+@media (max-width: 860px){
+  #logo h1{ font-size: 1.6rem; }
+  .ubicacion{ grid-template-columns: 1fr; }
+  .mapa iframe{ height: 340px; }
+  .bx-viewport{ min-height: 220px; height: var(--slider-h-mobile) !important; }
+  .bx-wrapper{ height: var(--slider-h-mobile) !important; }
+  #slider .galeria > div{ height: var(--slider-h-mobile); }
+  footer{ flex-direction: column; text-align: center; }
 }
