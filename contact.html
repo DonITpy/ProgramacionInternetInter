@@ -2,16 +2,282 @@
 <html lang="es">
   <head>
     <meta charset="utf-8" />
-    <title>Contacto - Cafetería del Equipo</title>
+    <title>Contacto — Cafetería del Equipo</title>
 
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
     <script type="text/javascript" src="main.js"></script>
+
+    <style>
+      /* ── Estilos exclusivos de contact.html ── */
+
+      /* Hero banner de contacto */
+      .contact-hero {
+        background: linear-gradient(135deg, var(--brand) 0%, var(--brand-2) 100%);
+        padding: 48px 24px 40px;
+        text-align: center;
+        color: #fff;
+      }
+      .contact-hero h2 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        letter-spacing: .4px;
+        margin-bottom: 8px;
+      }
+      .contact-hero p {
+        font-size: 1.05rem;
+        opacity: .9;
+      }
+
+      /* Grid principal de contacto */
+      .contact-wrapper {
+        max-width: 1100px;
+        margin: 28px auto 0 auto;
+        padding: 0 18px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      /* Tarjeta genérica */
+      .contact-card {
+        background: var(--card);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 28px;
+      }
+      .contact-card h3 {
+        font-size: 1.2rem;
+        color: var(--brand);
+        margin-bottom: 18px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #f3f4f6;
+      }
+
+      /* Info de contacto — íconos */
+      .info-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        margin-bottom: 18px;
+      }
+      .info-item:last-child { margin-bottom: 0; }
+      .info-icon {
+        width: 42px;
+        height: 42px;
+        background: linear-gradient(135deg, var(--brand), var(--brand-2));
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-size: 1.15rem;
+      }
+      .info-text strong {
+        display: block;
+        font-size: .85rem;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: .6px;
+        margin-bottom: 3px;
+      }
+      .info-text span {
+        color: var(--text);
+        font-size: .97rem;
+        line-height: 1.5;
+      }
+
+      /* Horarios tabla */
+      .horarios-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .horarios-table tr:not(:last-child) td {
+        border-bottom: 1px solid #f3f4f6;
+      }
+      .horarios-table td {
+        padding: 10px 6px;
+        font-size: .95rem;
+        color: var(--text);
+      }
+      .horarios-table td:last-child {
+        text-align: right;
+        color: var(--brand-2);
+        font-weight: 600;
+      }
+      .badge-abierto {
+        display: inline-block;
+        background: #d1fae5;
+        color: #065f46;
+        font-size: .75rem;
+        font-weight: 700;
+        padding: 2px 9px;
+        border-radius: 20px;
+        margin-left: 8px;
+        vertical-align: middle;
+        letter-spacing: .3px;
+      }
+
+      /* Formulario */
+      .form-group {
+        margin-bottom: 16px;
+      }
+      .form-group label {
+        display: block;
+        font-size: .85rem;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 6px;
+        letter-spacing: .3px;
+      }
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        width: 100%;
+        padding: 11px 14px;
+        border: 1.5px solid #e5e7eb;
+        border-radius: 10px;
+        font-size: .95rem;
+        font-family: inherit;
+        color: var(--text);
+        background: #fafafa;
+        transition: border-color .2s ease, box-shadow .2s ease;
+        outline: none;
+      }
+      .form-group input:focus,
+      .form-group textarea:focus,
+      .form-group select:focus {
+        border-color: var(--brand);
+        box-shadow: 0 0 0 3px rgba(249,115,22,.12);
+        background: #fff;
+      }
+      .form-group textarea {
+        resize: vertical;
+        min-height: 110px;
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .btn-enviar {
+        width: 100%;
+        padding: 13px;
+        background: var(--brand);
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        letter-spacing: .4px;
+        transition: background .2s ease, transform .15s ease, box-shadow .2s ease;
+        box-shadow: 0 4px 14px rgba(249,115,22,.35);
+        margin-top: 4px;
+      }
+      .btn-enviar:hover {
+        background: var(--brand-2);
+        transform: translateY(-1px);
+        box-shadow: 0 6px 20px rgba(249,115,22,.4);
+      }
+      .btn-enviar:active {
+        transform: translateY(0);
+      }
+
+      /* Mensaje de éxito */
+      .msg-exito {
+        display: none;
+        background: #d1fae5;
+        color: #065f46;
+        border-radius: 10px;
+        padding: 14px 16px;
+        margin-top: 14px;
+        font-size: .95rem;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      /* Mapa sección */
+      .contact-mapa {
+        max-width: 1100px;
+        margin: 20px auto 0 auto;
+        padding: 0 18px;
+      }
+      .contact-mapa h3 {
+        font-size: 1.2rem;
+        color: var(--brand);
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #f3f4f6;
+      }
+      .contact-mapa iframe {
+        width: 100%;
+        height: 420px;
+        border: 0;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        display: block;
+      }
+
+      /* Redes sociales */
+      .redes {
+        max-width: 1100px;
+        margin: 20px auto 28px auto;
+        padding: 0 18px;
+      }
+      .redes-inner {
+        background: var(--card);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 24px 28px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .redes-inner p {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text);
+      }
+      .redes-links {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .red-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 18px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: .9rem;
+        font-weight: 600;
+        transition: opacity .2s ease, transform .15s ease;
+        color: #fff;
+      }
+      .red-btn:hover { opacity: .87; transform: translateY(-1px); }
+      .red-btn.instagram { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366); }
+      .red-btn.facebook  { background: #1877f2; }
+      .red-btn.whatsapp  { background: #25d366; }
+
+      /* Responsive */
+      @media (max-width: 720px) {
+        .contact-wrapper { grid-template-columns: 1fr; }
+        .form-row { grid-template-columns: 1fr; }
+        .contact-hero h2 { font-size: 1.6rem; }
+        .redes-inner { flex-direction: column; align-items: flex-start; }
+      }
+    </style>
   </head>
+
   <body>
+
     <section id="global">
 
+      <!-- Cabecera idéntica al index -->
       <header>
         <div class="f"></div>
         <script>
@@ -36,70 +302,194 @@
         </nav>
       </header>
 
-      <section class="ubicacion">
-        <h3 class="titulo">Contacto</h3>
-
-        <form id="form-contacto">
-          <p>
-            <label>Nombre:<br>
-              <input type="text" id="nombre">
-            </label>
-          </p>
-          <p>
-            <label>Correo:<br>
-              <input type="text" id="correo">
-            </label>
-          </p>
-          <p>
-            <label>Mensaje:<br>
-              <textarea id="mensaje"></textarea>
-            </label>
-          </p>
-          <p>
-            <input type="submit" value="Enviar">
-          </p>
-        </form>
-
-        <p id="error" style="color:red;"></p>
-        <p id="ok" style="color:green;"></p>
-      </section>
+      <!-- Hero de la sección -->
+      <div class="contact-hero">
+        <h2>☕ Contáctanos</h2>
+        <p>Estamos aquí para atenderte. ¡Escríbenos o visítanos!</p>
+      </div>
 
     </section>
 
+    <!-- Grid: Info + Formulario -->
+    <div class="contact-wrapper">
+
+      <!-- Columna izquierda: información y horarios -->
+      <div>
+        <!-- Datos de contacto -->
+        <div class="contact-card" style="margin-bottom:20px;">
+          <h3>📍 Información de contacto</h3>
+
+          <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div class="info-text">
+              <strong>Dirección</strong>
+              <span>Cto. Universidades I, Fracción 2<br>76246 Zibatá, Querétaro, Qro.</span>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">📞</div>
+            <div class="info-text">
+              <strong>Teléfono</strong>
+              <span>(442) 000-0000</span>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">✉️</div>
+            <div class="info-text">
+              <strong>Correo electrónico</strong>
+              <span>cafeteria@equipo.com</span>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div class="info-text">
+              <strong>Cómo llegar</strong>
+              <span>A 5 min del Campus Anáhuac Querétaro.<br>Estacionamiento disponible.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Horarios -->
+        <div class="contact-card">
+          <h3>🕐 Horarios de atención</h3>
+          <table class="horarios-table">
+            <tr>
+              <td>Lunes</td>
+              <td>8:00 am – 7:00 pm <span class="badge-abierto">Abierto</span></td>
+            </tr>
+            <tr>
+              <td>Martes</td>
+              <td>8:00 am – 7:00 pm</td>
+            </tr>
+            <tr>
+              <td>Miércoles</td>
+              <td>8:00 am – 7:00 pm</td>
+            </tr>
+            <tr>
+              <td>Jueves</td>
+              <td>8:00 am – 7:00 pm</td>
+            </tr>
+            <tr>
+              <td>Viernes</td>
+              <td>8:00 am – 7:00 pm</td>
+            </tr>
+            <tr>
+              <td>Sábado</td>
+              <td>9:00 am – 9:00 pm</td>
+            </tr>
+            <tr>
+              <td>Domingo</td>
+              <td>9:00 am – 9:00 pm</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Columna derecha: formulario -->
+      <div class="contact-card">
+        <h3>💬 Envíanos un mensaje</h3>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" placeholder="Tu nombre" />
+          </div>
+          <div class="form-group">
+            <label for="apellido">Apellido</label>
+            <input type="text" id="apellido" placeholder="Tu apellido" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="correo">Correo electrónico</label>
+          <input type="email" id="correo" placeholder="correo@ejemplo.com" />
+        </div>
+
+        <div class="form-group">
+          <label for="telefono">Teléfono (opcional)</label>
+          <input type="tel" id="telefono" placeholder="(442) 000-0000" />
+        </div>
+
+        <div class="form-group">
+          <label for="asunto">Asunto</label>
+          <select id="asunto">
+            <option value="">Selecciona un asunto...</option>
+            <option>Reservación de mesa</option>
+            <option>Pedido especial / Catering</option>
+            <option>Información del menú</option>
+            <option>Sugerencias</option>
+            <option>Otro</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" placeholder="Escribe tu mensaje aquí..."></textarea>
+        </div>
+
+        <button class="btn-enviar" id="btnEnviar">Enviar mensaje ✉️</button>
+
+        <div class="msg-exito" id="msgExito">
+          ✅ ¡Mensaje enviado! Te responderemos pronto.
+        </div>
+      </div>
+    </div>
+
+    <!-- Mapa interactivo -->
+    <div class="contact-mapa">
+      <div class="contact-card">
+        <h3>🗺️ Encuéntranos aquí</h3>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59725.197771099!2d-100.34696236479701!3d20.676703161161356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d35db08e9cd7d1%3A0x4041218c71a698ce!2sStarbucks%20Anahuac%20Quer%C3%A9taro!5e0!3m2!1sen!2smx!4v1772551452186!5m2!1sen!2smx"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+
+    <!-- Redes sociales -->
+    <div class="redes">
+      <div class="redes-inner">
+        <p>🌐 Síguenos en nuestras redes sociales</p>
+        <div class="redes-links">
+          <a href="#" class="red-btn instagram">📸 Instagram</a>
+          <a href="#" class="red-btn facebook">📘 Facebook</a>
+          <a href="#" class="red-btn whatsapp">💬 WhatsApp</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer idéntico al index -->
     <footer>
       Copyright 2026
       <a href="#" class="subir">Ir arriba</a>
     </footer>
 
-    <!-- VALIDACIÓN DEL FORMULARIO -->
     <script>
-      var form = document.getElementById('form-contacto');
-      var error = document.getElementById('error');
-      var ok = document.getElementById('ok');
-
-      form.addEventListener('submit', function(e){
-        e.preventDefault();
-        error.textContent = '';
-        ok.textContent = '';
-
-        var nombre = document.getElementById('nombre').value.trim();
-        var correo = document.getElementById('correo').value.trim();
+      document.getElementById('btnEnviar').addEventListener('click', function () {
+        var nombre  = document.getElementById('nombre').value.trim();
+        var correo  = document.getElementById('correo').value.trim();
         var mensaje = document.getElementById('mensaje').value.trim();
 
-        if(!nombre || !correo || !mensaje){
-          error.textContent = 'Todos los campos son obligatorios.';
+        if (!nombre || !correo || !mensaje) {
+          alert('Por favor completa los campos: Nombre, Correo y Mensaje.');
           return;
         }
 
-        var reCorreo = /\S+@\S+\.\S+/;
-        if(!reCorreo.test(correo)){
-          error.textContent = 'Correo no válido.';
-          return;
-        }
+        var msgExito = document.getElementById('msgExito');
+        msgExito.style.display = 'block';
 
-        ok.textContent = 'Formulario enviado correctamente (simulado).';
-        form.reset();
+        var btn = document.getElementById('btnEnviar');
+        btn.textContent = '¡Enviado! ✅';
+        btn.disabled = true;
+        btn.style.opacity = '1';
+        btn.style.cursor = 'default';
+        btn.style.background = '#16a34a';
+        btn.style.boxShadow = '0 4px 14px rgba(22,163,74,.35)';
       });
     </script>
+
   </body>
 </html>
